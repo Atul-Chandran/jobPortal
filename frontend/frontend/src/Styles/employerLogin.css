@@ -1,0 +1,259 @@
+.header{
+    background-color: gainsboro;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(30px + 2vmin);
+}
+
+#text{
+    color: black;
+    position: absolute;
+    top: 50px;
+}
+
+h1{
+    text-align: center;
+    position: absolute;
+    top: 75px;
+    left: 450px;
+}
+
+#addJob{
+    position: relative;
+    top: 190px;
+    left: 1210px;
+}
+
+#jobListButton{
+    position: relative;
+    top: 190px;
+    left: 750px;
+}
+
+#homePage{
+    position: relative;
+    top: 50px;
+    left: 850px;
+}
+
+#employeeLogout{
+    position: relative;
+    top: 50px;
+    left: 1000px;
+}
+
+section{
+    position: relative;
+    top: 120px;
+    left: 450px;
+}
+
+#emailUpdate{
+    position: relative;
+    top: 20px;
+}
+
+#emailInputUpdate{
+    position: relative;
+    top: 20px;
+    width: 250px;
+}
+
+#updateText{
+    position: relative;
+    top: 50px;
+}
+
+#updateCheckbox{
+    position: relative;
+    top: 12px;
+    left: 160px;
+}
+
+#viewDetails{
+    position: relative;
+    top: 50px;
+    left: 600px;
+}
+
+#viewEmployeeDetails{
+    position: relative;
+    top: 50px;
+    left: 1000px;
+}
+
+h4{
+    position: absolute;
+    top: 200px;
+    left: 400px;
+}
+
+#descriptionEntry{
+    position: absolute;
+    top: 350px;
+    left: 400px;
+    width: 250px;
+}
+
+#expireDate{
+    position: relative;
+    top: 300px;
+    font-weight: 400;
+}
+
+#jobLocation{
+    position: relative;
+    top: 400px;
+    left: 430px;
+}
+
+#jobLocationMarker{
+    position: relative;
+    top: 370px;
+    left: 400px;
+}
+
+.react-date-picker{
+    position: relative;
+    top: 330px;
+    left: 400px;
+}
+
+#emailLogin{
+    position: absolute;
+    top: 250px;
+    left: 400px;
+    width: 250px;
+}
+
+#nameEntry{
+    position: absolute;
+    top: 250px;
+    left: 400px;
+    width: 250px;
+}
+
+#otpEntry{
+    position: absolute;
+    top: 250px;
+    left: 550px;
+    width: 100px;
+}
+
+#email{
+    position: relative;
+    top: 230px;
+    font-weight: 400;
+}
+
+
+#emailEntry{
+    position: relative;
+    top: 260px;
+    left: 400px;
+    width: 250px;
+}
+
+#button{
+    position: relative;
+    top: 300px;
+    left: 260px;
+}
+
+#updateButton{
+    position: relative;
+    top: 150px;
+    left: 450px;
+}
+
+#applyJob{
+    position: relative;
+    top: 300px;
+    left: 380px;
+}
+
+#jobList{
+    position: relative;
+    top: 350px;
+    left: 300px;
+}
+
+#signup{
+    position: relative;
+    top: 330px;
+    left: 150px;
+}
+
+#otpSignup{
+    position: relative;
+    top: 330px;
+    left: 560px;
+}
+
+#addingJob{
+    position: relative;
+    top: 480px;
+    left: 250px;
+}
+
+span{
+    position: relative;
+    top: 350px;
+    left: 200px;
+}
+
+#loginRedirect{
+    position: relative;
+    top: 390px;
+    left: 80px;
+}
+
+#description{
+    position: relative;
+    top: 230px;
+    font-weight: 400;
+}
+
+#name{
+    position: relative;
+    top: 160px;
+    font-weight: 400;
+}
+
+#otpHeading{
+    position: relative;
+    top: 160px;
+    left: 430px;
+    font-weight: 400;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+    top: 200px;
+}
+
+#noDataIndicator{
+    position: relative;
+    top: 250px;
+    font-size: 25px;
+    text-align: center;
+}
+  
+th,td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#jobDesc{
+    text-align: center;
+    width: 50%;
+    position: relative;
+    left: 350px;
+}
