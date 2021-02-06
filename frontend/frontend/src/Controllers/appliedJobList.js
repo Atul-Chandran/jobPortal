@@ -15,7 +15,6 @@ const STOCK_URL = "http://localhost:3002/fetchAppliedJobs?email=";
 const AppliedJobList = ({ email }) => {
   const [indicator, setIndicator] = useState(false);
   const [dataValues,setDataValues] = useState([]);
-  const [jobAppliedTime,setJobAppliedTime] = useState("");
   var values = [];
 
   if(!email){
@@ -75,6 +74,22 @@ const AppliedJobList = ({ email }) => {
     }
   }
 
+  function returnTimeAppliedOn(time){
+    if(time < 60){
+      return time + " seconds back"
+    }
+    else if(time >= 60 && time < 3600){
+      return Math.round(time/60) + " minutes back"
+    }
+    else if(time >= 3600 && time < 216000){
+      return Math.round(time/3600) + " hours back"
+    }
+    else{
+      return Math.round(time/216000) + " days back";
+    }
+
+  }
+
   return (
     <div>
       <h1><u>Applied Job List Posted</u></h1>
@@ -103,8 +118,8 @@ const AppliedJobList = ({ email }) => {
                     <td>{index + 1}</td>
                     <td>{data.jobTitle}</td>
                     <td>{
-                      Math.round((moment().unix() -  new Date(dataValues[0].jobAppliedOn))/60)
-                    } minutes back</td>
+                      returnTimeAppliedOn(Math.round(moment().unix() -  new Date(data.jobAppliedOn)))
+                    }</td>
                     <td>{returnJobStatus(data.jobStatus)}</td>
                     {/* <td>2</td> */}
                 </tbody>

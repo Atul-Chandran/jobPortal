@@ -1,8 +1,9 @@
 import React, { useState,useReducer } from "react";
 import ReactDOM from 'react-dom';
 import '../Styles/employerLogin.css';
-import EmployeeSignUp from './employeeSignUp';
+import NearbyJobs from './nearbyJobs';
 import JobList from './jobList';
+import AppliedJobList from './appliedJobList';
 import App from '../App';
 import axios from 'axios';
 
@@ -47,7 +48,7 @@ const JobPost = ({ jobData }) => {
 
   function logVal(){
       ReactDOM.render(
-        <EmployeeSignUp />,
+        <NearbyJobs />,
       document.getElementById('root')
     );
   }
@@ -68,10 +69,20 @@ const JobPost = ({ jobData }) => {
       }).then(jsonResponse => {
         if(jsonResponse.data.status === 200){
             alert("Job applied successfully");
-            ReactDOM.render(
-                <JobList />,
-              document.getElementById('root')
-            );
+            if(localStorage.getItem("type") === "Employee"){
+              alert("HEHRE");
+                ReactDOM.render(
+                  <AppliedJobList />,
+                document.getElementById('root')
+              );
+            }
+            else{
+              ReactDOM.render(
+                  <JobList />,
+                document.getElementById('root')
+              );
+            }
+            
         }
 
       });
