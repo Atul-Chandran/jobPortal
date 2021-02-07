@@ -7,7 +7,6 @@ export const initialState = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case "SEARCH_STOCK_REQUEST":
-      console.log("Action ",action.payload)
       return {
         ...state,
         errorMessage: null,
@@ -20,7 +19,6 @@ export const reducer = (state, action) => {
         email: action.payload
       }
     case "SEARCH_STOCK_SUCCESS":
-    console.log("EMAILstate ",action.payload.email)
       return {
         ...state,
         stockData: action.payload.data,

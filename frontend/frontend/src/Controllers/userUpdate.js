@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import EmployerSignUp from './employerSignUp';
 import JobList from './jobList';
 import Button from 'react-bootstrap/Button';
@@ -58,7 +58,6 @@ const UserUpdate = ({ search }) => {
           newEmail: email
           }).then(jsonResponse => {
             localStorage.setItem("email",email)
-            console.log("Json repose ",jsonResponse)
         });
         ReactDOM.render(
             <JobList/>,

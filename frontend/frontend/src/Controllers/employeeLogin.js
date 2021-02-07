@@ -1,6 +1,6 @@
 import React, { useState,useReducer } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import EmployeeSignUp from './employeeSignUp';
 import OtpPage from './otpVerification';
 import Button from 'react-bootstrap/Button';
@@ -8,10 +8,9 @@ import App from '../App';
 import { initialState, reducer } from "../store/reducer";
 import axios from 'axios';
 
-const STOCK_URL = "http://localhost:3002/createEmployeeOtp";
+const CREATE_EMPLOYEE_OTP = "http://localhost:3002/createEmployeeOtp";
 
-const EmployeeLogin = ({ search }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const EmployeeLogin = ({ }) => {
   const [email, setEmail] = useState("");
 
   const handleEmailChanges = e => {
@@ -22,7 +21,8 @@ const EmployeeLogin = ({ search }) => {
     setEmail("");
   };
 
-  function logVal(){
+  // Navigates to employee sign up page
+  function employeeSignUp(){
       ReactDOM.render(
         <EmployeeSignUp />,
       document.getElementById('root')
@@ -30,11 +30,14 @@ const EmployeeLogin = ({ search }) => {
   }
 
   function getOtp(){
+
+    // If a valid email is entered
     if(email){
-      axios.post(STOCK_URL,{emailId: email}).then(jsonResponse => {
+      axios.post(CREATE_EMPLOYEE_OTP,{emailId: email}).then(jsonResponse => {
         if(jsonResponse.data.status == 200){
           var data = {email: email, type: "Employee"}
 
+          // Sending the email and type to forthcoming pages for easier reference
           ReactDOM.render(
             <OtpPage email = {data} />,
             document.getElementById('root')
@@ -51,7 +54,9 @@ const EmployeeLogin = ({ search }) => {
 
   }
 
-  function returnHome(){
+  function logout(){
+    localStorage.removeItem("email");
+    localStorage.removeItem("type");
     ReactDOM.render(
       <App/>,
       document.getElementById('root')
@@ -61,19 +66,19 @@ const EmployeeLogin = ({ search }) => {
   return (
     <div>
       <h1><u>Employee Login Page</u></h1>
-      <Button id="homePage" variant="light" size="lg" onClick = {returnHome}>
-            Home page
+      <Button id="employeeHomePageButton" variant="danger" size="lg" onClick = {logout}>
+            Home Page
       </Button>{' '}
-      <h4>Enter your email address</h4>
+      <h4 id = "employee">Enter your email address</h4>
       <input
-        id = "emailLogin"
+        id = "employeeEmailLogin"
         value={email}
         onChange={handleEmailChanges}
         placeholder = "Ex:- abc@gmail.com"
         type="email"
       />
-        <input id ="button" onClick={getOtp} type="submit" value="Log In" required/>
-        <span><b>Are you new here? Please </b> <a onClick = {logVal} ><u>Sign Up</u></a></span>
+        <input id ="employeeLogin" onClick={getOtp} type="submit" value="Log In" required/>
+        <span id = "employeeSignUp"><b>Are you new here? Please </b> <a onClick = {employeeSignUp} ><u>Sign Up</u></a></span>
     </div>
 
   );

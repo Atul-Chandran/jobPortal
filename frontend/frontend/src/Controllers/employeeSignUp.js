@@ -1,13 +1,13 @@
 import React, { useState,useReducer,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import EmployeeLogin from './employeeLogin';
 import Button from 'react-bootstrap/Button';
 import App from '../App';
 import { initialState, reducer } from "../store/reducer";
 import axios from "axios";
 
-const STOCK_URL = "http://localhost:3002/saveUserDetails";
+const SAVE_DETAILS_URL = "http://localhost:3002/saveUserDetails";
 
 const EmployeeSignUp = ({ search }) => {
   const [name, setName] = useState("");
@@ -17,27 +17,15 @@ const EmployeeSignUp = ({ search }) => {
   const [longitude,setLongitude] = useState("");
 
   function getData(){
-    console.log("Get data");
-    console.log("BAME ",name)
-    var userLatitude = 0;
-    var userLongitude = 0;
     if(name && email){
 
-      axios.post(STOCK_URL,{
+      axios.post(SAVE_DETAILS_URL,{
         name: name,
         email: email,
         latitude:latitude,
         longitude: longitude
       }).then(jsonResponse => {
-        console.log("Onject ",jsonResponse)
         if(jsonResponse.data.status === 200){
-          dispatch({
-            type: "SEARCH_STOCK_SUCCESS",
-            payload: {
-              data: jsonResponse.data,
-              email: email
-            }
-          });
 
           alert("Record successfully added. Please login now");
 
@@ -49,8 +37,6 @@ const EmployeeSignUp = ({ search }) => {
 
       });
     }
-    // e.preventDefault();
-    console.log("State value ",state)
     resetInputField();
   }
 
@@ -61,7 +47,8 @@ const EmployeeSignUp = ({ search }) => {
   const handleEmailChanges = e => {
     setEmail(e.target.value);
     window.navigator.geolocation.getCurrentPosition(function(position){
-      console.log("Position ",position)
+
+      // Determining the user's location for nearby jobs
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
     });
@@ -72,14 +59,16 @@ const EmployeeSignUp = ({ search }) => {
     setEmail("");
   };
 
-  function logVal(){
+  function login(){
       ReactDOM.render(
         <EmployeeLogin />,
       document.getElementById('root')
     );
   }
 
-  function returnHome(){
+  function logout(){
+    localStorage.removeItem("email");
+    localStorage.removeItem("type");
     ReactDOM.render(
       <App/>,
       document.getElementById('root')
@@ -89,7 +78,7 @@ const EmployeeSignUp = ({ search }) => {
   return (
     <div>
       <h1><u>Employee Sign Up Page</u></h1>
-      <Button id="homePage" variant="light" size="lg" onClick = {returnHome}>
+      <Button id="homePage" variant="danger" size="lg" onClick = {logout}>
             Home page
       </Button>{' '}
       <h4 id = "name">Add your name</h4>
@@ -97,7 +86,7 @@ const EmployeeSignUp = ({ search }) => {
           id = "nameEntry"
           value={name}
           onChange={handleNameChanges}
-          type="email"
+          type="text"
         />
       <h4 id = "email">Add a new email address</h4>
         <input
@@ -108,7 +97,7 @@ const EmployeeSignUp = ({ search }) => {
           type="email"
         />
         <input id ="signup" onClick={getData} type="submit" value="Sign Up" required/>
-        <span id = "loginRedirect"><b>Back to </b> <a onClick = {logVal} ><u>Login</u></a></span>
+        <span id = "loginRedirect"><b>Back to </b> <a onClick = {login} ><u>Login</u></a></span>
     </div>
 
   );

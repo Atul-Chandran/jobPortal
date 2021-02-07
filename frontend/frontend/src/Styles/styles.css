@@ -23,8 +23,21 @@ h1{
 
 #addJob{
     position: relative;
+    top: 50px;
+    left: 980px;
+}
+
+#newJobApplication{
+    position: relative;
     top: 190px;
-    left: 1210px;
+    left: 1000px;
+
+}
+
+#jobInsertion{
+    position: relative;
+    top: 190px;
+    left: 1200px;
 }
 
 #jobListButton{
@@ -36,13 +49,49 @@ h1{
 #homePage{
     position: relative;
     top: 50px;
+    left: 1200px;
+}
+
+#nearbyJobsLogout{
+    position: relative;
+    top: 50px;
+    left: 1050px;
+}
+
+#addJobLogout{
+    position: relative;
+    top: 50px;
+    left: 1000px;
+}
+
+#jobListRedirection{
+    position: relative;
+    top: 50px;
+    left: 930px;
+}
+
+#jobListLogout{
+    position: relative;
+    top: 50px;
     left: 850px;
+}
+
+#employeeHomePageButton{
+    position: relative;
+    top: 50px;
+    left: 1200px;
 }
 
 #employeeLogout{
     position: relative;
     top: 50px;
     left: 1000px;
+}
+
+#appliedJobsLogout{
+    position: relative;
+    top: 50px;
+    left: 930px;
 }
 
 section{
@@ -85,10 +134,22 @@ section{
     left: 1000px;
 }
 
+#viewDetails{
+    position: relative;
+    top: 190px;
+    left: 1030px;
+}
+
 h4{
     position: absolute;
     top: 200px;
     left: 400px;
+}
+
+#employee{
+    position: relative;
+    top: 140px;
+    left: 450px;
 }
 
 #descriptionEntry{
@@ -129,6 +190,12 @@ h4{
     width: 250px;
 }
 
+#employeeEmailLogin{
+    position: relative;
+    top: 150px;
+    left: 450px;
+}
+
 #nameEntry{
     position: absolute;
     top: 250px;
@@ -161,6 +228,12 @@ h4{
     position: relative;
     top: 300px;
     left: 260px;
+}
+
+#employeeLogin{
+    position: relative;
+    top: 200px;
+    left: 280px;
 }
 
 #updateButton{
@@ -203,6 +276,12 @@ span{
     position: relative;
     top: 350px;
     left: 200px;
+}
+
+#employeeSignUp{
+    position: relative;
+    top: 250px;
+    left: 220px;
 }
 
 #loginRedirect{

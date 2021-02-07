@@ -1,6 +1,6 @@
 import React, { useState,useReducer,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import Button from 'react-bootstrap/Button';
 import JobList from './jobList';
 import App from '../App';
@@ -10,7 +10,7 @@ const moment = require('moment');
 
 const STOCK_URL = "http://localhost:3002/fetchAppliedJobs?email=";
 const UPDATE_STATUS_URL = "http://localhost:3002/updateStatus";
-const resumeURL = "http://127.0.0.1:8887/"
+const resumeURL = "file:///../../../../../backend/resume/"
 
 const UserJobList = ({ email }) => {
   const [indicator, setIndicator] = useState(false);
@@ -24,10 +24,7 @@ const UserJobList = ({ email }) => {
 
   useEffect(() => {
     axios.get(STOCK_URL).then(jsonResponse => {
-        console.log("Response ",jsonResponse.data);
-        console.log("URL ",STOCK_URL + email);
         var currentDate = moment().unix();
-        console.log("Current ",currentDate);
         if(jsonResponse.data.data.length === 0){
             setIndicator(true);
 
@@ -45,12 +42,10 @@ const UserJobList = ({ email }) => {
 
   function logVal(jobValue){
       var value = document.getElementById("status");
-      console.log("Job value ",jobValue);
       axios.post(UPDATE_STATUS_URL,{
           jobId: jobValue["_id"],
           jobStatus: parseInt(value.value)
       }).then(jsonResponse => {
-          console.log("Reps ",jsonResponse)
         if(jsonResponse.data.status === 200){
             alert("Status saved successfully");
             ReactDOM.render(
@@ -61,13 +56,20 @@ const UserJobList = ({ email }) => {
 
 
       }); 
-      console.log("Value ",value.value);
   }
 
-  function returnHome(){
+  function logout(){
     localStorage.removeItem("email");
+    localStorage.removeItem("type");
     ReactDOM.render(
       <App/>,
+      document.getElementById('root')
+    );
+  }
+
+  function redirectToJobList(){
+    ReactDOM.render(
+      <JobList/>,
       document.getElementById('root')
     );
   }
@@ -76,8 +78,12 @@ const UserJobList = ({ email }) => {
     <div>
       <h1><u>Jobs applied by user</u></h1>
 
-      <Button id="homePage" variant="light" size="lg" onClick = {returnHome}>
+      <Button id="homePage" variant="danger" size="lg" onClick = {logout}>
             Logout
+      </Button>{' '}
+
+      <Button id="jobListRedirection" variant="success" size="lg" onClick = {redirectToJobList}>
+            Back to job list
       </Button>{' '}
       <table>
           <thead>

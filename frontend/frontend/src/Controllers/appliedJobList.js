@@ -1,6 +1,6 @@
 import React, { useState,useReducer,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import Button from 'react-bootstrap/Button';
 import Nearbyjobs from './nearbyJobs';
 import UserUpdate from './userUpdate';
@@ -9,7 +9,7 @@ import axios from "axios";
 
 const moment = require('moment');
 
-const STOCK_URL = "http://localhost:3002/fetchAppliedJobs?email=";
+const APPLIED_JOBS_URL = "http://localhost:3002/fetchAppliedJobs?email=";
 
 
 const AppliedJobList = ({ email }) => {
@@ -17,40 +17,36 @@ const AppliedJobList = ({ email }) => {
   const [dataValues,setDataValues] = useState([]);
   var values = [];
 
+  // Fetching the email from browser storage for page redirection
   if(!email){
     email = localStorage.getItem("email");
   }
 
   useEffect(() => {
-    axios.get(STOCK_URL + email).then(jsonResponse => {
-        console.log("Response ",jsonResponse.data);
-        console.log("URL ",STOCK_URL + email);
-        var currentDate = moment().unix();
-        console.log("Current ",currentDate);
+    axios.get(APPLIED_JOBS_URL + email).then(jsonResponse => {
         if(jsonResponse.data.data.length === 0){
             setIndicator(true);
-
         }
         else{
-            const data = jsonResponse.data.data.map((data, index) => (
+            jsonResponse.data.data.map((data, index) => (
                 values.push(data)
               ));
             setDataValues(values);
         }
-
-
       });    
   }, []);
 
-  function logVal(){
+  function navigateToJobs(){
       ReactDOM.render(
         <Nearbyjobs email = {email} />,
       document.getElementById('root')
     );
   }
 
-  function returnHome(){
+  // Removing the browser storage
+  function logout(){
     localStorage.removeItem("email");
+    localStorage.removeItem("type");
     ReactDOM.render(
       <App/>,
       document.getElementById('root')
@@ -74,16 +70,25 @@ const AppliedJobList = ({ email }) => {
     }
   }
 
+  // Returns the time as to when the job was applied
   function returnTimeAppliedOn(time){
+
+    // Seconds conversion
     if(time < 60){
       return time + " seconds back"
     }
+
+    // Minutes conversion
     else if(time >= 60 && time < 3600){
       return Math.round(time/60) + " minutes back"
     }
+
+    // Hours conversion
     else if(time >= 3600 && time < 216000){
       return Math.round(time/3600) + " hours back"
     }
+
+    // Days conversion
     else{
       return Math.round(time/216000) + " days back";
     }
@@ -93,13 +98,13 @@ const AppliedJobList = ({ email }) => {
   return (
     <div>
       <h1><u>Applied Job List Posted</u></h1>
-      <Button id="addJob" variant="primary" size="lg" onClick = {logVal}>
-            Apply
+      <Button id="newJobApplication" variant="primary" size="lg" onClick = {navigateToJobs}>
+            Apply for a job
       </Button>{' '}
-      <Button id="viewEmployeeDetails" variant="success" size="lg" onClick = {viewLoginDetails}>
+      <Button id="viewDetails" variant="success" size="lg" onClick = {viewLoginDetails}>
             View Details
       </Button>{' '}
-      <Button id="employeeLogout" variant="light" size="lg" onClick = {returnHome}>
+      <Button id="appliedJobsLogout" variant="danger" size="lg" onClick = {logout}>
             Logout
       </Button>{' '}
       <table>
@@ -109,7 +114,6 @@ const AppliedJobList = ({ email }) => {
                 <th>Title</th>
                 <th>Applied On</th>
                 <th>Status</th>
-                {/* <th>Delete a Job?</th> */}
             </tr>
           </thead>
               {dataValues.length > 0 ?
@@ -121,7 +125,6 @@ const AppliedJobList = ({ email }) => {
                       returnTimeAppliedOn(Math.round(moment().unix() -  new Date(data.jobAppliedOn)))
                     }</td>
                     <td>{returnJobStatus(data.jobStatus)}</td>
-                    {/* <td>2</td> */}
                 </tbody>
             ))
               : ""}

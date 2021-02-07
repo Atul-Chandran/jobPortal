@@ -1,14 +1,14 @@
 import React, { useState,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
-import EmployerSignUp from './employerSignUp';
+import '../Styles/styles.css';
+import AppliedJobList from './appliedJobList';
 import JobList from './jobList';
 import Button from 'react-bootstrap/Button';
 import App from '../App';
 import axios from 'axios';
 
-const STOCK_URL = "http://localhost:3002/profileEmployerUpdate/id/";
-const EMPLOYER_DETAILS = "http://localhost:3002/fetchEmployerName/email/"
+const EMPLOYER_UPDATE_URL = "http://localhost:3002/profileEmployerUpdate/id/";
+const EMPLOYER_DETAILS_URL = "http://localhost:3002/fetchEmployerName/email/"
 
 const EmployerUpdate = ({ search }) => {
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ const EmployerUpdate = ({ search }) => {
 
   useEffect(() => {
       const existingEmail = localStorage.getItem("email")
-    axios.get(EMPLOYER_DETAILS + existingEmail).then(jsonResponse => {
+    axios.get(EMPLOYER_DETAILS_URL + existingEmail).then(jsonResponse => {
         if(jsonResponse.data.status === 200){
             setName(jsonResponse.data.data[0].name)
             setUserId(jsonResponse.data.data[0]["_id"]);
@@ -39,21 +39,30 @@ const EmployerUpdate = ({ search }) => {
     setEmail("");
   };
 
-  function getOtp(){
+  function updateDetails(){
       var updateQuery = {};
-      if(newName){
+      if(newName !== ""){
           updateQuery["name"] = newName;
       }
-      if(email){
+      if(email !== ""){
           updateQuery["email"] = email;
       }
-      axios.post(STOCK_URL + userId , updateQuery).then(jsonResponse => {
-        alert("User details saved successfully");
-        ReactDOM.render(
-            <JobList/>,
-            document.getElementById('root')
-        );
-      });
+      console.log("EMAIL ",email," 23");
+      // axios.post(EMPLOYER_UPDATE_URL + userId , updateQuery).then(jsonResponse => {
+      //   alert("User details saved successfully");
+      //   if(localStorage.getItem("type") === "Employee"){
+      //     ReactDOM.render(
+      //       <AppliedJobList/>,
+      //       document.getElementById('root')
+      //     )
+      //   }
+      //   else{
+      //       ReactDOM.render(
+      //         <JobList/>,
+      //         document.getElementById('root')
+      //     );
+      //   }
+      // });
 
     resetInputField();
 
@@ -66,6 +75,7 @@ const EmployerUpdate = ({ search }) => {
     );
   }
 
+  // Allows the employer to update on clicking the checkbox
   function enableUpdate(){
       setIsUpdate(false);
   }
@@ -105,7 +115,7 @@ const EmployerUpdate = ({ search }) => {
         />
       </section>
 
-        <input id ="updateButton" onClick={getOtp} type="submit" value="Update" disabled = {isUpdate} required />
+        <input id ="updateButton" onClick={updateDetails} type="submit" value="Update" disabled = {isUpdate} required />
     </div>
 
   );

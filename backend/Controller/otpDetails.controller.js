@@ -134,7 +134,7 @@ function otpEmployeeCreator(request,response){
                             });
                         }
                         else{
-                            mailService.sendMail(requestMessage.emailId,"Otp is " + otp + ". This OTP is valid for 20 minutes.");
+                            mailService.sendMail(requestMessage.emailId,"Otp is " + otp + ". This OTP is valid for 3 minutes.");
         
                             response.json({
                                 "status": 200,

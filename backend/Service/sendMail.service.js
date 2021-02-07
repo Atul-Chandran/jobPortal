@@ -3,14 +3,14 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'maravillosoaccion@gmail.com',
-    pass: 'impresionantecelebraciones'
+    user: '<your-email-id>',
+    pass: '<your-email-password>'
   }
 });
 function sendMail(emailId, emailMessage){
 
     var mailOptions = {
-        from: 'maravillosoaccion@gmail.com',
+        from: '<your-email-id>',
         to: emailId,
         subject: 'Job Portal Login',
         text: emailMessage

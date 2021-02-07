@@ -1,6 +1,6 @@
 import React, { useState,useReducer,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import Button from 'react-bootstrap/Button';
 import JobInsertion from './jobInsertion';
 import App from '../App'
@@ -8,8 +8,7 @@ import UserJobList from './userJobList';
 import EmployerUpdate from './employerUpdate';
 import axios from "axios";
 
-const STOCK_URL = "http://localhost:3002/fetchJobs/email/";
-const EXPIRING_JOB_URL = "http://localhost:3002/expiringJob";
+const FETCH_JOBS_BY_EMAIL_URL = "http://localhost:3002/fetchJobs/email/";
 
 const JobList = ({ email }) => {
   const [indicator, setIndicator] = useState(false);
@@ -20,7 +19,7 @@ const JobList = ({ email }) => {
   var values = [];
 
   useEffect(() => {
-    axios.get(STOCK_URL + email).then(jsonResponse => {
+    axios.get(FETCH_JOBS_BY_EMAIL_URL + email).then(jsonResponse => {
         if(jsonResponse.data.data.length === 0){
             setIndicator(true);
         }
@@ -68,7 +67,7 @@ const JobList = ({ email }) => {
   return (
     <div>
       <h1><u>Job List Posted</u></h1>
-      <Button id="addJob" variant="primary" size="lg" onClick = {logVal}>
+      <Button id="jobInsertion" variant="primary" size="lg" onClick = {logVal}>
             Add a Job
       </Button>{' '}
 
@@ -76,7 +75,7 @@ const JobList = ({ email }) => {
             View jobs applied by users
       </Button>{' '}
 
-      <Button id="homePage" variant="light" size="lg" onClick = {returnHome}>
+      <Button id="jobListLogout" variant="danger" size="lg" onClick = {returnHome}>
             Logout
       </Button>{' '}
       <Button id="viewDetails" variant="success" size="lg" onClick = {viewLoginDetails}>

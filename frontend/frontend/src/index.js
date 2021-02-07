@@ -11,7 +11,6 @@ ReactDOM.render((
   <Router>
      <Route path = "/" component = {App} />
       <Route path = "/about" component = {EmployerLogin} />
-      {/* <Route path = "contact" component = {Contact} /> */}
   </Router>
 ), document.getElementById('root'))
 

@@ -1,6 +1,6 @@
 import React, { useState,useReducer } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import NearbyJobs from './nearbyJobs';
 import JobList from './jobList';
 import AppliedJobList from './appliedJobList';
@@ -26,7 +26,6 @@ const JobPost = ({ jobData }) => {
     if(resume){
         setFileUploaded(true);
         const profile = new FormData();
-        console.log("Resume ",moment().unix());
         profile.append('file', resume);
         axios.post("http://localhost:3002/upload", profile, { 
         })
@@ -53,10 +52,8 @@ const JobPost = ({ jobData }) => {
     );
   }
 
-  function getOtp(){
+  function applyJob(){
     var email = localStorage.getItem("email");
-    console.log("Values ",jobData);
-    console.log("ID ",jobData["_id"]);
     if(fileUploaded){
       axios.post(STOCK_URL,{
           userEmail: email,
@@ -70,7 +67,6 @@ const JobPost = ({ jobData }) => {
         if(jsonResponse.data.status === 200){
             alert("Job applied successfully");
             if(localStorage.getItem("type") === "Employee"){
-              alert("HEHRE");
                 ReactDOM.render(
                   <AppliedJobList />,
                 document.getElementById('root')
@@ -128,7 +124,7 @@ const JobPost = ({ jobData }) => {
           </tbody>
       </table>
 
-        <input id ="applyJob" onClick={getOtp} type="submit" value="Apply" required/>
+        <input id ="applyJob" onClick={applyJob} type="submit" value="Apply" required/>
         <span id = "jobList"><b>Wish to return back to job list? Click here </b> <a onClick = {logVal} ><u>Job List</u></a></span>
     </div>
 

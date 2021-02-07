@@ -1,8 +1,8 @@
 import React, { useState,useReducer,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import Button from 'react-bootstrap/Button';
-import JobInsertion from './jobInsertion';
+import AppliedJobList from './appliedJobList';
 import JobPost from './jobPost';
 import App from '../App';
 import axios from "axios";
@@ -23,7 +23,6 @@ const Nearbyjobs = ({ email }) => {
   var values = [];
 
   useEffect(() => {
-    console.log("EMAIL ",email);
 
     axios.get(LOCATION_URL + email).then(jsonResponse => {
         latitude = jsonResponse.data.data[0].latitude;
@@ -44,18 +43,25 @@ const Nearbyjobs = ({ email }) => {
       });    
   }, []);
 
-  function logVal(data){
-    console.log("Data ",data);
+  function jobPostRedirection(data){
       ReactDOM.render(
         <JobPost jobData = {data} />,
       document.getElementById('root')
     );
   }
 
-  function returnHome(){
+  function logout(){
     localStorage.removeItem("email");
+    localStorage.removeItem("type");
     ReactDOM.render(
       <App/>,
+      document.getElementById('root')
+    );
+  }
+
+  function jobListRedirecttion(){
+    ReactDOM.render(
+      <AppliedJobList/>,
       document.getElementById('root')
     );
   }
@@ -63,8 +69,11 @@ const Nearbyjobs = ({ email }) => {
   return (
     <div>
       <h1><u>Nearby jobs available</u></h1>
+      <Button id="viewDetails" variant="success" size="lg" onClick = {jobListRedirecttion}>
+            View Jobs applied
+      </Button>{' '}
 
-      <Button id="homePage" variant="light" size="lg" onClick = {returnHome}>
+      <Button id="nearbyJobsLogout" variant="danger" size="lg" onClick = {logout}>
             Logout
       </Button>{' '}
       <table>
@@ -84,7 +93,7 @@ const Nearbyjobs = ({ email }) => {
                     <td>{data.title}</td>
                     <td>{data.createdBy}</td>
                     <td>
-                        <Button id="" variant="primary" size="lg" onClick = {() => logVal(data)} >
+                        <Button id="" variant="primary" size="lg" onClick = {() => jobPostRedirection(data)} >
                             Apply
                         </Button>{' '}
                     </td>

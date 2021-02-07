@@ -10,7 +10,7 @@ const databaseDetails = {
     mongoDBUrl : "mongodb://localhost:27017/"
 }
 
-const otpExpiryTime = 20;
+const otpExpiryTime = 3;
 
 const mailDetails = {
     transporter : nodemailer.createTransport({

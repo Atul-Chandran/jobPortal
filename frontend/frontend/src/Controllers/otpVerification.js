@@ -1,6 +1,6 @@
 import React, { useState,useReducer,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import EmployerLogin from './employerLogin';
 import JobList from './jobList';
 import AppliedJobList from "./appliedJobList";

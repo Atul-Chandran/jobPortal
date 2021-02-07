@@ -1,6 +1,6 @@
 import React, { useState,useReducer,useEffect } from "react";
 import ReactDOM from 'react-dom';
-import '../Styles/employerLogin.css';
+import '../Styles/styles.css';
 import JobList from './jobList';
 import App from '../App';
 import Button from 'react-bootstrap/Button';
@@ -8,20 +8,19 @@ import { initialState, reducer } from "../store/reducer";
 import axios from "axios";
 import DatePicker from 'react-date-picker';
 
-const STOCK_URL = "http://localhost:3002/addJob";
+const ADD_JOB_URL = "http://localhost:3002/addJob";
 
 const JobInsertion = ({ email }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [expireDate,setExpireDate] = useState("");
+  const [date,setDate] = useState("");
   const [latitude,setLatitude] = useState("");
   const [longitude,setLongitude] = useState("");
 
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  function getData(){
+  function addJob(){
     if(name && description && expireDate){
-      axios.post(STOCK_URL,{
+      axios.post(ADD_JOB_URL,{
           title: name,
           description: description,
           latitude: latitude,
@@ -29,7 +28,6 @@ const JobInsertion = ({ email }) => {
           expireDate: expireDate,
           createdBy: email
       }).then(jsonResponse => {
-          console.log("JSON Repo ",jsonResponse)
         if(jsonResponse.data.status === 200){
         
           alert("Job created successfully");
@@ -42,8 +40,6 @@ const JobInsertion = ({ email }) => {
 
       });
     }
-    // e.preventDefault();
-    console.log("State value ",state)
     resetInputField();
   }
 
@@ -70,14 +66,16 @@ const JobInsertion = ({ email }) => {
     setDescription("");
   };
 
-  function returnHome(){
+  function logout(){
+    localStorage.removeItem("email");
+    localStorage.removeItem("type");
     ReactDOM.render(
       <App/>,
       document.getElementById('root')
     );
   }
 
-  function logVal(){
+  function fetchJobs(){
       ReactDOM.render(
         <JobList />,
       document.getElementById('root')
@@ -87,12 +85,12 @@ const JobInsertion = ({ email }) => {
   return (
     <div>
       <h1><u>Add a Job</u></h1>
-      <Button id="addJob" variant="primary" size="lg" onClick = {logVal}>
+      <Button id="addJob" variant="primary" size="lg" onClick = {fetchJobs}>
             View Jobs
       </Button>{' '}
 
-      <Button id="homePage" variant="light" size="lg" onClick = {returnHome}>
-            Return to home page
+      <Button id="addJobLogout" variant="danger" size="lg" onClick = {logout}>
+            Logout
       </Button>{' '}
       <h4 id = "name">Title</h4>
         <input
@@ -113,8 +111,9 @@ const JobInsertion = ({ email }) => {
             <DatePicker
             id = "dateEntry"
             onChange={handleExpireDate}
+            value = {date}
             />
-        <input id ="addingJob" onClick={getData} type="submit" value="Add Job" required/>
+        <input id ="addingJob" onClick={addJob} type="submit" value="Add Job" required/>
     </div>
 
   );

@@ -1,0 +1,771 @@
+{
+	"info": {
+		"_postman_id": "72b70b20-0543-46f5-894a-d541cb9c154f",
+		"name": "TaskMo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OTP",
+			"item": [
+				{
+					"name": "Creating an Otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailId\": \"atulchandran05@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/createOtp",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"createOtp"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Creating an Otp",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailId\": \"atulchandran05@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/createOtp",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"createOtp"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-uvKfbFCOV2ANOzrQOS87MraGnZs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Feb 2021 09:36:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Otp Generated successfully\",\n    \"data\": {\n        \"otp\": 2591,\n        \"otpExpiryTime\": 1612346170\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Validating given OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"atulchandran05@gmail.com\",\r\n    \"otp\": 2591\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/otpValidityCheck",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"otpValidityCheck"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Validating given OTP",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"atulchandran05@gmail.com\",\r\n    \"otp\": 2591\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/otpValidityCheck",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"otpValidityCheck"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-Qm+zZEiZ0a7Q9YbN4GxBz9PqIWw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Feb 2021 09:37:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Otp given is valid.\",\n    \"data\": {\n        \"isValid\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Employer",
+			"item": [
+				{
+					"name": "Saving employer details",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Atul\",\r\n    \"email\": \"atulchandran05@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/saveEmployerDetails",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"saveEmployerDetails"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Saving employer details",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Atul\",\r\n    \"email\": \"atulchandran05@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/saveEmployerDetails",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"saveEmployerDetails"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-ZSMnXY7qX1+RFQb0mP0jgz08IRQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Feb 2021 09:35:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Data succesfully added\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Updating Employer profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Atul Chandran\",\r\n    \"email\": \"chandran.atul05@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/profileUserUpdate/id/601c33c640e1361ce4a8f0b3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"profileUserUpdate",
+								"id",
+								"601c33c640e1361ce4a8f0b3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "Updating status of a job",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobId\": \"601d1260ea833a2b9c28fb0b\",\r\n    \"jobStatus\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/updateStatus",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"updateStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Saving a job",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Full stack developer\",\r\n    \"description\": \"Looking for a full stack developer\",\r\n    \"latitude\": 17.644022,\r\n    \"longitude\": 20.997898,\r\n    \"expireDate\": \"2021-02-03T15:05:52+05:30\",\r\n    \"createdBy\": \"atulchandran05@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/addJob",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"addJob"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Saving a job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Full stack developer\",\r\n    \"description\": \"Looking for a full stack developer\",\r\n    \"locality\": {\r\n        \"latitude\": 17.644022,\r\n        \"longitude\": 20.997898\r\n    },\r\n    \"expireDate\": \"2021-02-03T15:05:52+05:30\",\r\n    \"createdBy\": \"atulchandran05@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/addJob",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"addJob"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-44DGYWf9kSrmXal34QW34mXwDzY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Feb 2021 09:58:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Job succesfully added\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Expiring a job",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobId\": \"601d46595ce0b92d58ee5054\",\r\n    \"employerEmail\": \"maravillosoaccion@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/expiringJob",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"expiringJob"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Expiring a job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"jobId\": \"601a77f51353fa32e831a000\",\r\n    \"employerEmail\": \"atulchandran05@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/expiringJob",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"expiringJob"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-Q02V7g9FMgMqkOrt5N0d4X9Xs4w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Feb 2021 10:40:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Status changed successfully\",\n    \"data\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetching jobs posted by employers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/fetchJobs/email/maravillosoaccion@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"fetchJobs",
+								"email",
+								"maravillosoaccion@gmail.com"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Fetching jobs posted by employers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/fetchJobs/email/atulchandran05@gmail.com",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"fetchJobs",
+										"email",
+										"atulchandran05@gmail.com"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8f-DPsUUSxm2n4bBX2NkfV0I0rSXkA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Feb 2021 10:21:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Jobs fetched successfully\",\n    \"data\": [\n        {\n            \"title\": \"Full stack developer\",\n            \"description\": \"Looking for a full stack developer\",\n            \"status\": 1\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User Jobs",
+			"item": [
+				{
+					"name": "Saving job details for user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 23,\r\n    \"jobId\": 10,\r\n    \"resume\": \"resume\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/saveUserJobDetails",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"saveUserJobDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Fetching username of employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/fetchUserName/email/chandran.atul05@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"fetchUserName",
+								"email",
+								"chandran.atul05@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uploading a resume",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Users/atul/Desktop/Edureka_Pay_Slips/April_2020.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/upload",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetching location details of user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/fetchLocation/email/chandran.atul05@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"fetchLocation",
+								"email",
+								"chandran.atul05@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Saving user details",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userEmail\": \"atc@gmail.c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/saveUserJobDetails",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"saveUserJobDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetching user applied jobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/fetchAppliedJobs?email=chandran.atul05@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"fetchAppliedJobs"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "chandran.atul05@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetching nearby jobs for user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/fetchNearbyJobs/latitude/12.775737/longitude/77.6108515",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"fetchNearbyJobs",
+								"latitude",
+								"12.775737",
+								"longitude",
+								"77.6108515"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Updating email of user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"currentEmail\": \"chandran.atul05@gmail.com\",\r\n    \"newEmail\": \"maravillosoaccion@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/updateEmailJobs",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"updateEmailJobs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

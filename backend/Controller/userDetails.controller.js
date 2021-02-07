@@ -114,10 +114,8 @@ function updateProfile(request,response){
               }
               else{
                 response.json({
-                    message: "Otp given is invalid.",
-                    data: {
-                        isValid: 0
-                    }
+                    status: 400,
+                    message: "Error while updating details", 
                 });
               }
 

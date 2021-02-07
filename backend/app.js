@@ -1,15 +1,13 @@
 const http = require('http');
-const express = require('express');
 const app = require('express')();
 var multer = require('multer')
 var cors = require('cors');
-const path = require("path") 
 
 let bodyParser = require('body-parser');
 
-
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
+      // The resumes uploaded will be stored in directory "resume"
       cb(null, './resume');
    },
   filename: function (req, file, cb) {
@@ -17,18 +15,21 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage: storage }).single('file')
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
+// Controller functions
 const employeeController = require('./Controller/employerDetails.controller').employerDetails;
 const userController = require('./Controller/userDetails.controller').userDetails;
 const userJobController = require('./Controller/userJobDetails.controller').userJobDetails;
 const otpController = require('./Controller/otpDetails.controller').otpDetails;
 const jobController = require('./Controller/jobs.controller').jobDetails;
 
+// Service function
+const uploadService = require('./Service/uploadResume.service').uploadService;
+
+// ******** Post APIs ************ //
 // Employer details
 app.post('/saveEmployerDetails',employeeController.saveEmployerDetails);
 app.post('/profileEmployerUpdate/id/:id',employeeController.updateProfile);
@@ -47,23 +48,12 @@ app.post('/otpValidityCheck',otpController.otpValidityChecker);
 app.post('/addJob',jobController.saveJob);
 app.post('/expiringJob',jobController.expiringJob);
 app.post('/saveUserJobDetails',userJobController.saveUserJobDetails);
-
 app.post('/updateStatus',userJobController.updateJobStatus);
 
-app.post('/upload',function(req, res) {
-     
-  upload(req, res, function (err) {
-         if (err instanceof multer.MulterError) {
-             return res.status(500).json(err)
-         } else if (err) {
-             return res.status(500).json(err)
-         }
-    return res.status(200).send(req.file)
+// Resume uploader
+app.post('/upload',uploadService.uploadResume);
 
-  })
-
-});
-
+// ******** Get APIs ************ //
 app.get('/fetchJobs/email/:email',jobController.fetchJobsPostedByEmployer)
 app.get('/fetchNearbyJobs/latitude/:latitude/longitude/:longitude',jobController.fetchNearbyJobs);
 app.get('/fetchLocation/email/:email',userController.fetchLocationByEmail);
