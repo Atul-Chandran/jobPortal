@@ -10,7 +10,7 @@ const moment = require('moment');
 
 const STOCK_URL = "http://localhost:3002/fetchAppliedJobs?email=";
 const UPDATE_STATUS_URL = "http://localhost:3002/updateStatus";
-const resumeURL = "file:///../../../../../backend/resume/"
+const resumeURL = "http://127.0.0.1:8887/"
 
 const UserJobList = ({ email }) => {
   const [indicator, setIndicator] = useState(false);
@@ -104,7 +104,7 @@ const UserJobList = ({ email }) => {
                     <td>{index + 1}</td>
                     <td>{data.jobTitle}</td>
                     <td>{data.userEmail}</td>
-                    <td><a href={resumeURL + data.resume}>Resume link</a></td>
+                    <td><a href={resumeURL + data.resume} target = "_blank">Resume link</a></td>
                     <td>
                         <select name="status" id="status">
                             <option value="2">In-Progress</option>

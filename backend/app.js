@@ -15,6 +15,8 @@ var storage = multer.diskStorage({
   }
 });
 
+var upload = multer({ storage: storage }).single('file')
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -51,7 +53,17 @@ app.post('/saveUserJobDetails',userJobController.saveUserJobDetails);
 app.post('/updateStatus',userJobController.updateJobStatus);
 
 // Resume uploader
-app.post('/upload',uploadService.uploadResume);
+app.post('/upload',function(req,res){
+  upload(req, res, function (err) {
+           if (err instanceof multer.MulterError) {
+               return res.status(500).json(err)
+           } else if (err) {
+               return res.status(500).json(err)
+           }
+      return res.status(200).send(req.file)
+  
+    })
+});
 
 // ******** Get APIs ************ //
 app.get('/fetchJobs/email/:email',jobController.fetchJobsPostedByEmployer)
