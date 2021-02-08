@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import ReactDOM from 'react-dom';
 import '../Styles/styles.css';
-import EmployerSignUp from './employerSignUp';
+import AppliedJobList from './appliedJobList';
 import JobList from './jobList';
 import Button from 'react-bootstrap/Button';
 import App from '../App';
@@ -59,10 +59,19 @@ const UserUpdate = ({ search }) => {
           }).then(jsonResponse => {
             localStorage.setItem("email",email)
         });
-        ReactDOM.render(
-            <JobList/>,
-            document.getElementById('root')
-        );
+
+        if(localStorage.getItem("type") === "Employee"){
+            ReactDOM.render(
+              <AppliedJobList/>,
+              document.getElementById('root')
+          );
+        }
+        else{
+            ReactDOM.render(
+              <JobList/>,
+              document.getElementById('root')
+          );
+        }
       });
 
     resetInputField();
